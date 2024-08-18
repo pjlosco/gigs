@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Gigs</title>
+	<style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .event_image {
+            display: grid;
+            height: 100%;
+        }
+        .center-fit {
+            max-width: 100%;
+            max-height: 100vh;
+            margin: auto;
+        }
+    </style>
+	<script type="text/javascript">
+		// load json from url
+		function loadData(){
+			return $.getJSON('http://url.com', function(json) {
+				const events = JSON.parse(json).events
+				
+				for(let ei = 0; ei < events.length; ei++) {
+					// loop through each event
+				    let event = events[i];
+				    
+				    let jobs = event.jobs;
+					for(let ji = 0; ji < jobs.length; ji++) {
+						// loop through job list and call create job element function, then add all to an event
+
+					}
+				}
+			});
+		}
+
+		function createJobList(argument) {
+			// body...
+		}
+
+		function createJobElement(argument) {
+			// body...
+		}
+
+		function createEventElement(argument) {
+			// body...
+		}
+
+		function createEventList(argument) {
+			// body...
+		}
+
+	</script>
+</head>
+<body>
+	<div id="title">
+		<img class="center-fit" src="logo.jpg" style="size: 10%;">
+	</div>
+	<div id="events" class="list" style="border: 1px solid #ccc !important; border-color: #000 !important;">
+	<!-- event list -->
+		<div class="event">
+		<!-- event -->
+			<div id="event_id_#" class="event_title">
+				Event 1
+			</div>
+			<div class="event_image">
+				<img class="center-fit" src="stadium.png">
+			</div>
+			<div class="event_content">
+				<div class="description">
+					event description
+				</div>
+				<div id="event_#_jobs" class="job_list">
+				<!-- job list -->
+					<div class="job">
+						<div id="job_id_#">
+							Job Title
+						</div>
+					
+						<p>description</p>
+						<br/>
+						<p>skills</p>
+						<br/>
+						<p>certifications</p>
+						<br/>
+						<p>Contact:</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- event 2 ... -->
+	</div>
+</body>
+</html>
