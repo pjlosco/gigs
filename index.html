@@ -16,81 +16,129 @@
             max-height: 100vh;
             margin: auto;
         }
+        .center {
+		  display: block;
+		  margin-left: auto;
+		  margin-right: auto;
+		}
     </style>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 	<script type="text/javascript">
 		// load json from url
 		function loadData(){
-			return $.getJSON('http://url.com', function(json) {
-				const events = JSON.parse(json).events
-				
-				for(let ei = 0; ei < events.length; ei++) {
-					// loop through each event
-				    let event = events[i];
-				    
-				    let jobs = event.jobs;
-					for(let ji = 0; ji < jobs.length; ji++) {
-						// loop through job list and call create job element function, then add all to an event
-
-					}
-				}
+			const json = $.getJSON("https://raw.githubusercontent.com/pjlosco/gigs/main/sample.json", function(json) {
+			    console.log(json);
 			});
+			alert(JSON.stringify(json));
+			createEventList(json.events);
 		}
 
-		function createJobList(argument) {
-			// body...
+
+		function createEventList(events) {
+			const eventList = document.getElementById("events");
+
+			if (events.length == 0) {
+				let emptyEventDiv = document.createElement("div");
+				const emptyMessage = document.createElement("p");
+				emptyMessage.innerHTML = "No events found";
+				emptyEventDiv.appendChild(emptyMessage);
+				eventList.appendChild(emptyEventDiv);
+			} else {
+				for(let i = 0; i < events.length; i++) {
+				    let event = events[i];
+				    let eventDiv = createEventElement(event);
+				    eventList.appendChild(eventDiv);
+				}
+			}
 		}
 
-		function createJobElement(argument) {
-			// body...
+		function createEventElement(event) {
+			let eventDiv = document.createElement("div");
+			eventDiv.id = "event_" + event.id;
+			eventDiv.className = "event";
+			
+			const titleDiv = document.createElement("div");
+			titleDiv.innerHTML = event.title;
+			eventDiv.appendChild(titleDiv);
+
+			const eventImageDiv = document.createElement("div");
+			eventImageDiv.className = "event_image";
+			const eventImage = document.createElement("img");
+			eventImage.src = event.image;
+			eventImage.className = "center-fit";
+			eventImageDiv.appendChild(eventImage);
+			eventDiv.appendChild(eventImageDiv);
+
+			const description = document.createElement("p");
+			description.innerHTML = event.description;
+			eventDiv.appendChild(description);
+
+			const jobList = createJobList(event.jobs);
+			eventDiv.appendChild(jobList);
+
+			return eventDiv;
 		}
 
-		function createEventElement(argument) {
-			// body...
+		function createJobList(jobs) {
+			let jobsListDiv = document.createElement("div");
+			jobsListDiv.className = "jobs_list";
+
+			if (jobs.length == 0) {
+				alert("No jobs found");
+				let emptyDiv = document.createElement("div");
+				const emptyMessage = document.createElement("p");
+				emptyMessage.innerHTML = "No jobs found";
+				emptyDiv.appendChild(emptyMessage);
+				jobsListDiv.appendChild(emptyDiv);
+			} else {
+				for(let i = 0; i < jobs.length; i++) {
+					let jobDiv = createJobElement(jobs[i]);
+					jobsListDiv.appendChild(jobDiv);
+				}
+			}
+			return jobsListDiv;
 		}
 
-		function createEventList(argument) {
-			// body...
+		function createJobElement(job) {
+			let jobDiv = document.createElement("div");
+			jobDiv.id = "job_" + job.id;
+
+			let jobTitle = document.createElement("p");
+			jobTitle.innerHTML = job.title;
+			jobTitle.className = "jobTitle";
+			jobDiv.appendChild(jobTitle);
+
+			let jobDescription = document.createElement("p");
+			jobDescription.innerHTML = job.description;
+			jobDescription.className = "jobDescription";
+			jobDiv.appendChild(jobDescription);
+
+			let jobSkills = document.createElement("p");
+			jobSkills.innerHTML = "Require Skillset: </br>" + job.skills;
+			jobDiv.appendChild(jobSkills);
+
+			let jobCertifications = document.createElement("p");
+			jobCertifications.innerHTML = "Certifications: </br>" + job.certifications;
+			jobDiv.appendChild(jobCertifications);
+
+			let jobContact = document.createElement("p");
+			jobContact.innerHTML = "Contact: </br>" +job.contact;
+			jobDiv.appendChild(jobContact);
+
+			return jobDiv;
 		}
 
+        window.onload = loadData();
 	</script>
 </head>
 <body>
-	<div id="title">
-		<img class="center-fit" src="logo.jpg" style="size: 10%;">
+	<div id="title" style="background-color: #121726;">
+		<img class="center-fit center" src="logo.jpg" style="max-height: 60px;">
 	</div>
 	<div id="events" class="list" style="border: 1px solid #ccc !important; border-color: #000 !important;">
-	<!-- event list -->
-		<div class="event">
-		<!-- event -->
-			<div id="event_id_#" class="event_title">
-				Event 1
-			</div>
-			<div class="event_image">
-				<img class="center-fit" src="stadium.png">
-			</div>
-			<div class="event_content">
-				<div class="description">
-					event description
-				</div>
-				<div id="event_#_jobs" class="job_list">
-				<!-- job list -->
-					<div class="job">
-						<div id="job_id_#">
-							Job Title
-						</div>
-					
-						<p>description</p>
-						<br/>
-						<p>skills</p>
-						<br/>
-						<p>certifications</p>
-						<br/>
-						<p>Contact:</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- event 2 ... -->
+
 	</div>
 </body>
 </html>
