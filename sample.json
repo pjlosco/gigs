@@ -2,12 +2,14 @@
 	"events": [ 
 		{
 			"id": 1,
-			"event_name": "Sample Event",
-			"image": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png", 
+			"title": "Sample Event",
+			"image": "https://raw.githubusercontent.com/pjlosco/gigs/main/stadium.png", 
+			"description": "Event description",
 			"jobs": [
 				{
 					"id": 1,
 					"title": "Job 1",
+					"description": "Sample description",
 					"skills": "Skill list",
 					"certifications": "No certs needed",
 					"contact": "name@email.com"
@@ -15,6 +17,7 @@
 				{
 					"id": 2,
 					"title": "Job 2",
+					"description": "Sample description",
 					"skills": "Skill list",
 					"certifications": "No certs needed",
 					"contact": "name@email.com"
@@ -27,12 +30,14 @@
 		},
 		{
 			"id": 2,
-			"event_name": "Sample Event 2",
-			"image": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png", 
+			"title": "Sample Event 2",
+			"image": "https://raw.githubusercontent.com/pjlosco/gigs/main/stadium.png", 
+			"description": "Event description",
 			"jobs": [
 				{
 					"id": 1,
 					"title": "Job 1",
+					"description": "Sample description",
 					"skills": "Skill list",
 					"certifications": "No certs needed",
 					"contact": "name@email.com"
@@ -40,6 +45,7 @@
 				{
 					"id": 2,
 					"title": "Job 2",
+					"description": "Sample description",
 					"skills": "Skill list",
 					"certifications": "No certs needed",
 					"contact": "name@email.com"

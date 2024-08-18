@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta http-equiv="Cache-control" content="no-cache">
+
 	<title>Gigs</title>
 	<style>
         * {
@@ -17,9 +19,13 @@
             margin: auto;
         }
         .center {
-		  display: block;
-		  margin-left: auto;
-		  margin-right: auto;
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		.list {
+			border: 1px solid #ccc !important; 
+			border-color: #000 !important;
 		}
     </style>
 
@@ -28,11 +34,10 @@
 	<script type="text/javascript">
 		// load json from url
 		function loadData(){
-			const json = $.getJSON("https://raw.githubusercontent.com/pjlosco/gigs/main/sample.json", function(json) {
+			$.getJSON("https://raw.githubusercontent.com/pjlosco/gigs/main/sample.json", function(json) {
 			    console.log(json);
+				createEventList(json.events);
 			});
-			alert(JSON.stringify(json));
-			createEventList(json.events);
 		}
 
 
@@ -60,7 +65,7 @@
 			eventDiv.className = "event";
 			
 			const titleDiv = document.createElement("div");
-			titleDiv.innerHTML = event.title;
+			titleDiv.innerHTML = "<b>" + event.title + "</b>";
 			eventDiv.appendChild(titleDiv);
 
 			const eventImageDiv = document.createElement("div");
@@ -83,7 +88,7 @@
 
 		function createJobList(jobs) {
 			let jobsListDiv = document.createElement("div");
-			jobsListDiv.className = "jobs_list";
+			jobsListDiv.className = "jobs_list list";
 
 			if (jobs.length == 0) {
 				alert("No jobs found");
@@ -104,27 +109,28 @@
 		function createJobElement(job) {
 			let jobDiv = document.createElement("div");
 			jobDiv.id = "job_" + job.id;
+			jobDiv.className = "list";
 
 			let jobTitle = document.createElement("p");
-			jobTitle.innerHTML = job.title;
+			jobTitle.innerHTML = "<b>" + job.title + "</b>";
 			jobTitle.className = "jobTitle";
 			jobDiv.appendChild(jobTitle);
 
 			let jobDescription = document.createElement("p");
-			jobDescription.innerHTML = job.description;
+			jobDescription.innerHTML = "<b>" + job.description + "</b>";
 			jobDescription.className = "jobDescription";
 			jobDiv.appendChild(jobDescription);
 
 			let jobSkills = document.createElement("p");
-			jobSkills.innerHTML = "Require Skillset: </br>" + job.skills;
+			jobSkills.innerHTML = "<b>Require Skillset:</b> </br>" + job.skills;
 			jobDiv.appendChild(jobSkills);
 
 			let jobCertifications = document.createElement("p");
-			jobCertifications.innerHTML = "Certifications: </br>" + job.certifications;
+			jobCertifications.innerHTML = "<b>Certifications:</b> </br>" + job.certifications;
 			jobDiv.appendChild(jobCertifications);
 
 			let jobContact = document.createElement("p");
-			jobContact.innerHTML = "Contact: </br>" +job.contact;
+			jobContact.innerHTML = "<b>Contact:</b> </br>" +job.contact;
 			jobDiv.appendChild(jobContact);
 
 			return jobDiv;
