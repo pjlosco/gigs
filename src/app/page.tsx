@@ -1,7 +1,7 @@
 "use client";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Events } from "./components/Events";
+import { Events } from "@/components/Events";
 
 export default function Home() {
   const queryClient = new QueryClient();

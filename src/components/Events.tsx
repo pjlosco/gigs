@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { EventType } from "@/types";
 import { EventCard } from "./EventCard";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import ExpandableCardDemo from "./blocks/expandable-card-demo-grid";
 
 export const Events = () => {
   const { isPending, error, data, isFetching } = useQuery<{
@@ -20,14 +21,11 @@ export const Events = () => {
 
   return (
     <>
-      <hr className="h-px my-1 bg-gray-200 border-0 dark:bg-gray-700" />
+      {data ? <ExpandableCardDemo events={data.events} /> : null}
+      {/* <hr className="h-px my-1 bg-gray-200 border-0 dark:bg-gray-700" />
       {data?.events.map((event) => {
-        return (
-          <div className="mb-2">
-            <EventCard event={event} />
-          </div>
-        );
-      })}
+        return <EventCard key={event.id} event={event} />;
+      })} */}
     </>
   );
 };
