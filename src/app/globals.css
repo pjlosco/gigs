@@ -21,10 +21,3 @@
     text-wrap: balance;
   }
 }
-
-.collapsed {
-  display: none;
-}
-.expanded {
-  display: block;
-}
