@@ -133,6 +133,10 @@
 			jobContact.innerHTML = "<b>Contact:</b> </br>" +job.contact;
 			jobDiv.appendChild(jobContact);
 
+			let jobPay = document.createElement("p");
+			jobPay.innerHTML = "<b>Pay:</b> </br>" +job.pay;
+			jobDiv.appendChild(jobPay);
+
 			return jobDiv;
 		}
 
